@@ -10,7 +10,7 @@ import (
 
 func init() {
 	godotenv.Load() //nolint
-	env := loadString("ENV", "development")
+	env := loadString("ENVIRONMENT", "development")
 	godotenv.Load(fmt.Sprintf(".env.%s", env))
 	godotenv.Load(fmt.Sprintf(".env.%s.local", env))
 }

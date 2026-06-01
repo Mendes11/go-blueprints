@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
-
-	"github.com/pkg/errors"
 )
 
 type Server struct{}
@@ -30,7 +28,7 @@ func StartAPI(conf Config) error {
 	mux := loadRoutes(s)
 	slog.Info("Listening to Requests", "environment", conf.Environment, "port", conf.Port, "host", conf.Host)
 	if err := http.ListenAndServe(fmt.Sprintf("%s:%d", conf.Host, conf.Port), mux); err != nil {
-		return errors.Wrap(err, "StartAPI ListenAndServe failed")
+		return fmt.Errorf("StartAPI ListenAndServe failed: %w", err)
 	}
 	slog.Info("Shutting down server", "environment", conf.Environment)
 	return nil

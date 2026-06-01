@@ -38,9 +38,9 @@ Following best practices for Golang projects, we'll use the `cmd` folder to hold
 ```
 root/
   cmd/
-    server/
+    simple-service/
       main.go
-    cli/
+    simple-cli/
       main.go
   internal/
     app/
@@ -61,7 +61,7 @@ The dependencies to achieve that are `godotenv` for helping loading environment 
 
 ### Simple API Server
 
-If the project requires a simple API server, it should declare it in `app.go`, and use `http.MuxServe` for the handlers. Route definition lives inside `app.go`, but the handlers can be declared in dedicated files in the package, to avoid it getting too big, and organize code by functionality/context. It's preferable to use method handlers, so we can store configuration within the server struct instead of using globals.
+If the project requires a simple API server, it should declare it in `app.go`, and use `http.ServeMux` for the handlers. Route definition lives inside `app.go`, but the handlers can be declared in dedicated files in the package, to avoid it getting too big, and organize code by functionality/context. It's preferable to use method handlers, so we can store configuration within the server struct instead of using globals.
 
 To avoid overengineering, the handlers will contain all business logic, common code should still be isolated to keep it DRY, and single responsibility principles should also be applied.
 
